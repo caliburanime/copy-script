@@ -1,4 +1,6 @@
 from pathlib import Path
+import datetime
+
 
 source_dir = Path('g:/')
 
@@ -12,6 +14,9 @@ def grab_files():
 		# print("\n")
 
 
+def make_folder(folder_name):
+	destination_dir = source_dir / folder_name
+	pass
 
 
 def main():
