@@ -31,7 +31,7 @@ def grab_files():
 
 		make_folder(final_path)
 		print(f"{i} \n{final_path}")
-		# file_copy(i, final_path)
+		file_copy(i, final_path)
 		print("*" * 20 )
 		# print(i)		# Outputs the grabbed files
 		# print("\n")
