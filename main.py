@@ -3,7 +3,7 @@ import datetime
 import shutil
 
 
-source_dir = Path('g:/')
+source_dir = Path('G:/') # input letter from drives_info module
 
 
 def get_finalpath(the_file, root_folder):
@@ -28,6 +28,8 @@ def grab_files():
 			continue 	# Ignores any hidden folders (folders starting with an '.')
 		root_folder = fold_name()
 		final_path = get_finalpath(i, root_folder)
+
+		make_folder(final_path)
 		print(f"{i} \n{final_path}")
 		# file_copy(i, final_path)
 		print("*" * 20 )
@@ -45,8 +47,8 @@ def fold_name():
 	return now
 	
 
-def make_folder(folder_name):
-	destination_dir = source_dir / folder_name
+def make_folder(final_path):
+	final_path.mkdir(parents=True, exist_ok=True)
 	pass
 
 
@@ -56,7 +58,7 @@ def main():
 	# test = get_finalpath()
 	# print(test)
 	# print(get_finalpath('g:/dir1/dir2/141890.txt', fold_name()))
-	print(grab_files())
+	grab_files()
 
 
 
