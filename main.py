@@ -4,13 +4,6 @@ import shutil
 import sys
 from drives_info import get_removeable_disk_letter
 
-if get_removeable_disk_letter () == None:
-	print("no removeable disk found")
-	sys.exit()
-else:
-	source_dir = Path(get_removeable_disk_letter()) # input letter from drives_info module
-	# x = get_removeable_disk_letter()
-	# print(x)
 
 
 def get_finalpath(the_file, root_folder):
@@ -25,12 +18,11 @@ def get_finalpath(the_file, root_folder):
 	# print(final_path_list)
 	return Path(*final_path_list)
 
-	
-	
+		
 
-def grab_files():
+def grab_files(dir):
 	
-	for i in source_dir.rglob("*.ppt*"):
+	for i in dir.rglob("*.ppt*"):
 		if any(x.startswith('.') for x in i.parts):
 			continue 	# Ignores any hidden folders (folders starting with an '.')
 		root_folder = fold_name()
@@ -43,9 +35,12 @@ def grab_files():
 		# print(i)		# Outputs the grabbed files
 		# print("\n")
 
+
+
 def file_copy(file, des_path):
 	shutil.copy2(file, des_path)
 	
+
 
 def fold_name():
 	now = datetime.datetime.now()
@@ -54,24 +49,36 @@ def fold_name():
 	return now
 	
 
+
 def make_folder(final_path):
 	final_path.mkdir(parents=True, exist_ok=True)
 	pass
 
 
-def main():
-	
+
+def main(dir):
 	
 	# test = get_finalpath()
 	# print(test)
 	# print(get_finalpath('g:/dir1/dir2/141890.txt', fold_name()))
-	grab_files()
+	grab_files(dir)
 
 
 
+drives = get_removeable_disk_letter()
 
-if __name__== '__main__':
+if not drives:
+	print("no removeable disk found")
+	sys.exit()
+else:
+	for drive in drives:
+		dir = Path(drive)
+		# x = get_removeable_disk_letter()
+		# print(x)
 
-	main()
-	
+
+		if __name__== '__main__':
+			main(dir)
+		
+
 

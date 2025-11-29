@@ -12,17 +12,20 @@ import wmi
 
 
 def get_removeable_disk_letter ():
+
     c  = wmi.WMI()
+    removeable_drives = []
+    
     for drive in c.Win32_LogicalDisk():
-        # print(drive.DeviceID)
         if drive.DriveType == 2:
-            # print(drive)
-            return drive.DeviceID
+            removeable_drives.append(drive.Caption)
+
+    return removeable_drives
 
 
 
 
 if __name__ == '__main__':
 
-    # get_removeable_disk_letter()
+    print(get_removeable_disk_letter())
     pass
