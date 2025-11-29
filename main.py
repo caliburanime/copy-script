@@ -1,11 +1,17 @@
 from pathlib import Path
 import datetime
 import shutil
+import sys
 from drives_info import get_removeable_disk_letter
 
-source_dir = Path(get_removeable_disk_letter()) # input letter from drives_info module
-# x = get_removeable_disk_letter()
-# print(x)
+if get_removeable_disk_letter () == None:
+	print("no removeable disk found")
+	sys.exit()
+else:
+	source_dir = Path(get_removeable_disk_letter()) # input letter from drives_info module
+	# x = get_removeable_disk_letter()
+	# print(x)
+
 
 def get_finalpath(the_file, root_folder):
 	test_path = Path(the_file)
