@@ -44,7 +44,8 @@ def file_copy(file, des_path):
 
 def fold_name():
 	now = datetime.datetime.now()
-	now = now.strftime("%d-%m-%y_%H-%M-%S")
+	# now = now.strftime("%d-%m-%y_%H-%M-%S")
+	now = now.strftime("%d-%m-%y_%H")
 	# print(now)
 	return now
 	
@@ -64,21 +65,21 @@ def main(dir):
 	grab_files(dir)
 
 
+if __name__== '__main__':
+	drives = get_removeable_disk_letter()
 
-drives = get_removeable_disk_letter()
-
-if not drives:
-	print("no removeable disk found")
-	sys.exit()
-else:
-	for drive in drives:
-		dir = Path(drive)
-		# x = get_removeable_disk_letter()
-		# print(x)
+	if not drives:
+		print("no removeable disk found")
+		sys.exit()
+	else:
+		for drive in drives:
+			dir = Path(drive)
+			# x = get_removeable_disk_letter()
+			# print(x)
 
 
-		if __name__== '__main__':
-			main(dir)
+		# if __name__== '__main__':
+		main(dir)
 		
 
 
