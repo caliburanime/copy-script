@@ -27,5 +27,5 @@ def get_removeable_disk_letter ():
 
 if __name__ == '__main__':
 
-    print(get_removeable_disk_letter())
+    # print(get_removeable_disk_letter())
     pass
