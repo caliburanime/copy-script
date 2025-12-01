@@ -78,8 +78,8 @@ if __name__== '__main__':
 			# print(x)
 			# dir = Path("g:/")
 
-		if __name__== '__main__':
-			main(dir)
+		# if __name__== '__main__':
+		main(dir)
 		
 
 
