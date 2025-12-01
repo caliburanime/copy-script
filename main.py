@@ -2,7 +2,7 @@ from pathlib import Path
 import datetime
 import shutil
 import sys
-from drives_info import get_removeable_disk_letter
+import drives_info
 
 
 
@@ -66,17 +66,17 @@ def main(dir):
 
 
 if __name__== '__main__':
-	drives = get_removeable_disk_letter()
+	drives = drives_info.thread()
 
 	if not drives:
-		print("no removeable disk found")
+		print("No removeable disk found")
 		sys.exit()
 	else:
 		for drive in drives:
 			dir = Path(drive)
 			# x = get_removeable_disk_letter()
 			# print(x)
-
+			# dir = Path("g:/")
 
 		# if __name__== '__main__':
 		main(dir)

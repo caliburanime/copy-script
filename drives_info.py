@@ -1,4 +1,8 @@
 import wmi
+import threading
+import pythoncom
+
+removeable_drives: list[str] = []
 
 # DRIVE_TYPES = {
 #     0 : "Unknown",
@@ -11,15 +15,22 @@ import wmi
 # }
 
 
-def get_removeable_disk_letter ():
-
+def get_removeable_disk_letter() -> list[str]:
+    pythoncom.CoInitialize()
     c  = wmi.WMI()
-    removeable_drives = []
-    
+    # removeable_drives = []
+    global removeable_drives
     for drive in c.Win32_LogicalDisk():
         if drive.DriveType == 2:
             removeable_drives.append(drive.Caption)
+    pythoncom.CoUninitialize()
+    # return removeable_drives
 
+
+def thread() -> list[str]:
+    run = threading.Thread(target=get_removeable_disk_letter)
+    run.start()
+    run.join()
     return removeable_drives
 
 
