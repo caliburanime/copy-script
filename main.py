@@ -66,20 +66,20 @@ def main(dir):
 
 
 if __name__== '__main__':
-	drives = drives_info.thread()
+	# drives = drives_info.thread()
 
-	if not drives:
-		print("No removeable disk found")
-		sys.exit()
-	else:
-		for drive in drives:
-			dir = Path(drive)
-			# x = get_removeable_disk_letter()
-			# print(x)
-			# dir = Path("g:/")
-
-		# if __name__== '__main__':
-		main(dir)
+	# if not drives:
+	# 	print("No removeable disk found")
+	# 	sys.exit()
+	# else:
+	# 	for drive in drives:
+	# 		dir = Path(drive)
+	# 		# x = get_removeable_disk_letter()
+	# 		# print(x)
+	# 		# dir = Path("g:/")
+	pass
+	# 	# if __name__== '__main__':
+	# 	main(dir)
 		
 
 
