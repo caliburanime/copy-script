@@ -59,7 +59,7 @@ def work_loop() -> str:
 
             print("No removeable disk found")
             # sys.exit()
-            time.sleep(1)
+            time.sleep(2)
         else:
             for drive in drives:
                 dir = Path(drive)
