@@ -44,4 +44,4 @@ def main():
 
 thread = threading.Thread(target=main)
 thread.start()
-thread.join()
+
