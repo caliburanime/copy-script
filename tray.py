@@ -27,7 +27,7 @@ from pathlib import Path
 def main():
 
 	source_py_dir = Path(__file__).parent
-	img_path = source_py_dir / 'Barb_pic.jpg'
+	img_path = source_py_dir / 'icon.png'
 	image = Image.open(img_path)
 	print("-----Tray icon started-----")
 	icon = pystray.Icon("copy-script", image, menu= pystray.Menu( 
