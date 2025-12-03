@@ -40,19 +40,19 @@ def grab_files(dir):
 
 def file_copy(file, des_path):
 	des_file = des_path / file.name
-	if des_file in copied_files:
+	if file.name in copied_files:
 		print(f"Skipped. File already exists: {des_file}")
 		return
 
 	shutil.copy2(file, des_path)
 	print(f"Copied {file} -> {des_file}")
-	copied_files.add(des_file)
+	copied_files.add(file.name)
 
 
 def fold_name():
 	now = datetime.datetime.now()
-	# now = now.strftime("%d-%m-%y_%H-%M-%S")
-	now = now.strftime("%d-%m-%y_%H")
+	now = now.strftime("%d-%m-%y_%H-%M-%S")
+	# now = now.strftime("%d-%m-%y_%H")
 	# print(now)
 	return now
 	
