@@ -4,7 +4,7 @@ import shutil
 import sys
 import drives_info
 
-
+copied_files = set()
 
 def get_finalpath(the_file, root_folder):
 	test_path = Path(the_file)
@@ -29,8 +29,9 @@ def grab_files(dir):
 		final_path = get_finalpath(i, root_folder)
 
 		make_folder(final_path)
-		print(f"{i} \n{final_path}")
+		
 		file_copy(i, final_path)
+		# print(f"Copied {i} -> {final_path}")
 		print("*" * 20 )
 		# print(i)		# Outputs the grabbed files
 		# print("\n")
@@ -38,8 +39,14 @@ def grab_files(dir):
 
 
 def file_copy(file, des_path):
+	des_file = des_path / file.name
+	if des_file in copied_files:
+		print(f"Skipped. File already exists: {des_file}")
+		return
+
 	shutil.copy2(file, des_path)
-	
+	print(f"Copied {file} -> {des_file}")
+	copied_files.add(des_file)
 
 
 def fold_name():
