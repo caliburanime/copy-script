@@ -29,7 +29,7 @@ def exit(icon, item) -> None:
 	print('-----Exiting-----')
 	icon.stop()
 
-def get_removeable_disk_letter() -> list[str]:
+def get_removeable_disk_letter() -> str:
     pythoncom.CoInitialize()
     c  = wmi.WMI()
     # removeable_drives = []
@@ -52,16 +52,16 @@ def thread() -> list[str]:
 
 def work_loop() -> str:
     global is_on
-    drives = thread()
+    usb_drives = thread()
     while is_on:
     
-        if not drives:
+        if not usb_drives:
 
             print("No removeable disk found")
             # sys.exit()
-            time.sleep(2)
+            time.sleep(5)
         else:
-            for drive in drives:
+            for drive in usb_drives:
                 dir = Path(drive)
                 # x = get_removeable_disk_letter()
                 # print(x)
