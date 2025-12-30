@@ -49,7 +49,7 @@ def file_copy(file, des_path):
 	des_file = des_path / file.name
 	if file.name in copied_files:
 		# print(f"Skipped. File already exists: {des_file}")
-		logger.error(f"Skipped. File already exists: {des_file}")
+		logger.warning(f"Skipped. File already exists: {des_file}")
 		return
 
 	shutil.copy2(file, des_path)
