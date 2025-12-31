@@ -26,9 +26,9 @@ from pathlib import Path
 # 	icon.stop()
 
 logger = logging.getLogger(__name__)
-simPrint = logging.StreamHandler()
-simPrint.setLevel(logging.INFO)
-logger.addHandler(simPrint)
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+logger.addHandler(console_handler)
 
 def main():
 
