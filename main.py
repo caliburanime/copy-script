@@ -11,7 +11,7 @@ console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.INFO)
 logger.addHandler(console_handler)
 
-copied_files = set()
+# copied_files = set()
 
 def get_finalpath(the_file, root_folder):
 	test_path = Path(the_file)
@@ -28,11 +28,13 @@ def get_finalpath(the_file, root_folder):
 		
 
 def grab_files(dir):
-	
+
+	root_folder = fold_name()
+
 	for i in dir.rglob("*.ppt*"):
 		if any(x.startswith('.') for x in i.parts):
 			continue 	# Ignores any hidden folders (folders starting with an '.')
-		root_folder = fold_name()
+		
 		final_path = get_finalpath(i, root_folder)
 
 		make_folder(final_path)
@@ -48,15 +50,15 @@ def grab_files(dir):
 
 def file_copy(file, des_path):
 	des_file = des_path / file.name
-	if file.name in copied_files:
-		# print(f"Skipped. File already exists: {des_file}")
-		logger.warning(f"Skipped. File already exists: {des_file}")
-		return
+	# if file.name in copied_files:
+	# 	# print(f"Skipped. File already exists: {des_file}")
+	# 	logger.warning(f"Skipped. File already exists: {des_file}")
+	# 	return
 
 	shutil.copy2(file, des_path)
 	# print(f"Copied {file} -> {des_file}")
 	logger.info(f"Copied {file} -> {des_file}")
-	copied_files.add(file.name)
+	# copied_files.add(file.name)
 
 
 def fold_name():
