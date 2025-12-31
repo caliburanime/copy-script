@@ -51,7 +51,7 @@ def get_removeable_disk_letter() -> str:
     # return removeable_drives
 
 
-def thread() -> list[str]:
+def thread() -> list[str]: # Function to run the thread that gets disk letter
     # print('----Starting-----')
     logger.info('-----Starting-----')
     run = threading.Thread(target=get_removeable_disk_letter)
@@ -80,7 +80,7 @@ def work_loop() -> str:
                 # dir = Path("g:/")
 
             # if __name__== '__main__':
-            main.main(dir)
+            main.main(dir) # Sends the drive letter to the main.py
             # print(get_removeable_disk_letter())
 
 
