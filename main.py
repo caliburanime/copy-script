@@ -1,8 +1,15 @@
 from pathlib import Path
 import datetime
 import shutil
+import logging
 import sys
 import drives_info
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+logger.addHandler(console_handler)
 
 copied_files = set()
 
@@ -32,7 +39,8 @@ def grab_files(dir):
 		
 		file_copy(i, final_path)
 		# print(f"Copied {i} -> {final_path}")
-		print("*" * 20 )
+		# print("*" * 20 )
+		logger.info("*" * 20)
 		# print(i)		# Outputs the grabbed files
 		# print("\n")
 
@@ -41,11 +49,13 @@ def grab_files(dir):
 def file_copy(file, des_path):
 	des_file = des_path / file.name
 	if file.name in copied_files:
-		print(f"Skipped. File already exists: {des_file}")
+		# print(f"Skipped. File already exists: {des_file}")
+		logger.warning(f"Skipped. File already exists: {des_file}")
 		return
 
 	shutil.copy2(file, des_path)
-	print(f"Copied {file} -> {des_file}")
+	# print(f"Copied {file} -> {des_file}")
+	logger.info(f"Copied {file} -> {des_file}")
 	copied_files.add(file.name)
 
 
@@ -65,7 +75,6 @@ def make_folder(final_path):
 
 
 def main(dir):
-	
 	# test = get_finalpath()
 	# print(test)
 	# print(get_finalpath('g:/dir1/dir2/141890.txt', fold_name()))

@@ -2,6 +2,7 @@ import pystray
 from PIL import Image
 import drives_info
 import threading
+import logging
 from pathlib import Path
 # def do_stuff(icon, item):
 # 	if str(item) == 'On':
@@ -24,12 +25,18 @@ from pathlib import Path
 # 	print('-----Exiting-----')
 # 	icon.stop()
 
+logger = logging.getLogger(__name__)
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+logger.addHandler(console_handler)
+
 def main():
 
 	source_py_dir = Path(__file__).parent
 	img_path = source_py_dir / 'tray.png'
 	image = Image.open(img_path)
-	print("-----Tray icon started-----")
+	# print("-----Tray icon started-----")
+	logger.info("-----Tray icon started-----")
 	icon = pystray.Icon("copy-script", image, menu= pystray.Menu( 
 		pystray.MenuItem('Start', drives_info.begin),
 		pystray.MenuItem('Stop', drives_info.stop),
@@ -44,6 +51,8 @@ def main():
 	icon.run()
 
 if __name__=='__main__':
+	logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(levelname)s: %(message)s', filename='c:/copyscript.log')
+	
 	main()
 # thread = threading.Thread(target=main)
 # thread.start()
