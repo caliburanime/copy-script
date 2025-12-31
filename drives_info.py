@@ -15,7 +15,7 @@ console_handler.setLevel(logging.INFO)
 logger.addHandler(console_handler)
 
 is_on = True
-removeable_drives: list[str] = []
+
 
 # DRIVE_TYPES = {
 #     0 : "Unknown",
@@ -43,12 +43,13 @@ def get_removeable_disk_letter() -> str:
     pythoncom.CoInitialize()
     c  = wmi.WMI()
     # removeable_drives = []
-    global removeable_drives
+    # global removeable_drives
+    removeable_drives: list[str] = []
     for drive in c.Win32_LogicalDisk():
         if drive.DriveType == 2:
             removeable_drives.append(drive.Caption)
     pythoncom.CoUninitialize()
-    # return removeable_drives
+    return removeable_drives
 
 
 def thread() -> list[str]: # Function to run the thread that gets disk letter
@@ -65,7 +66,7 @@ def work_loop() -> str:
     global is_on
     
     while is_on:
-        usb_drives = thread()
+        usb_drives = get_removeable_disk_letter()
         if not usb_drives:
 
             # print("No removeable disk found")
