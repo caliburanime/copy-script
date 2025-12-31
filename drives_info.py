@@ -39,7 +39,7 @@ def exit(icon, item) -> None:
     logger.info('-----Exiting-----')
     icon.stop()
 
-def get_removeable_disk_letter() -> str:
+def get_removeable_disk_letter() -> list[str]:
     pythoncom.CoInitialize()
     c  = wmi.WMI()
     # removeable_drives = []
@@ -75,15 +75,15 @@ def work_loop() -> str:
             time.sleep(5)
         else:
             for drive in usb_drives:
-                dir = Path(drive)
+                dir_path = Path(drive)
                 # x = get_removeable_disk_letter()
                 # print(x)
                 # dir = Path("g:/")
 
             # if __name__== '__main__':
-                main.main(dir) # Sends the drive letter to the main.py
+                main.main(dir_path) # Sends the drive letter to the main.py
             # print(get_removeable_disk_letter())
-        time.sleep(60)
+            time.sleep(60)
 
 
 def begin():
