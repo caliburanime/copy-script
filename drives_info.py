@@ -35,7 +35,7 @@ def stop(icon, item) -> None:
     logger.info("Stopped app")
 
 def exit(icon, item) -> None:
-	# print('-----Exiting-----')
+    # print('-----Exiting-----')
     logger.info('-----Exiting-----')
     icon.stop()
 
