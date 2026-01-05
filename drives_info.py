@@ -41,7 +41,7 @@ def exit(icon, item) -> None:
     icon.stop()
 
 def get_removeable_disk_letter() -> list[str]:
-    # pythoncom.CoInitialize()
+    pythoncom.CoInitialize()
     c  = wmi.WMI()
     # removeable_drives = []
     # global removeable_drives
@@ -55,17 +55,17 @@ def get_removeable_disk_letter() -> list[str]:
             removeable_drives.clear()
         else:
             logging.info(f"The contents of the usb drive {drive.caption} has already been copied.")
-    # pythoncom.CoUninitialize()
+    pythoncom.CoUninitialize()
     return removeable_drives
 
 
-# def thread() -> list[str]: # Function to run the thread that gets disk letter
-#     # print('----Starting-----')
-#     logger.info('-----Starting-----')
-#     run = threading.Thread(target=get_removeable_disk_letter)
-#     run.start()
-#     run.join()
-#     return removeable_drives
+def thread() -> list[str]: # Function to run the thread that gets disk letter
+    # print('----Starting-----')
+    logger.info('-----Starting-----')
+    run = threading.Thread(target=get_removeable_disk_letter)
+    run.start()
+    run.join()
+    return removeable_drives
 
 
 
@@ -73,7 +73,7 @@ def work_loop():
     global is_on
     
     while is_on:
-        usb_drives = get_removeable_disk_letter()
+        usb_drives = thread()
         if not removeable_drives:
 
             # print("No removeable disk found")
