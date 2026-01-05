@@ -3,7 +3,7 @@ import datetime
 import shutil
 import logging
 import sys
-import drives_info
+# import drives_info
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

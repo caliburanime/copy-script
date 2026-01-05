@@ -50,6 +50,9 @@ def get_removeable_disk_letter() -> list[str]:
         if drive.DriveType == 2 and not removeable_drives:
             removeable_drives.append(drive.Caption)
             logging.info(f"Found USB drive {drive.caption}")
+        
+        elif not drive.DriveType == 2:
+            removeable_drives.clear()
         else:
             logging.info(f"The contents of the usb drive {drive.caption} has already been copied.")
     # pythoncom.CoUninitialize()
@@ -71,7 +74,7 @@ def work_loop():
     
     while is_on:
         usb_drives = get_removeable_disk_letter()
-        if not usb_drives:
+        if not removeable_drives:
 
             # print("No removeable disk found")
             logger.warning("No removeable disk found")
