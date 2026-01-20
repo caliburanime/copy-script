@@ -10,3 +10,4 @@ testing/
 build/
 dist/
 tray.spec
+copy-script.geany
