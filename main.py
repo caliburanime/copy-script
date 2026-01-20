@@ -1,4 +1,5 @@
 from pathlib import Path
+from itertools import chain
 import datetime
 import shutil
 import logging
@@ -30,8 +31,11 @@ def get_finalpath(the_file, root_folder):
 def grab_files(dir):
 
 	root_folder = fold_name()
-
-	for i in dir.rglob("*.ppt*"):
+	files = chain(dir.rglob("*.ppt*"),
+				dir.rglob("*.docx")
+	
+	)
+	for file in files:
 		if any(x.startswith('.') for x in i.parts):
 			continue 	# Ignores any hidden folders (folders starting with an '.')
 		
