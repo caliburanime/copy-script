@@ -18,6 +18,11 @@ is_on = True
 # processed_drives = []
 removeable_drives: list[str] = [] # Saves the drive letter that was found
 
+# === TEST MODE ===
+# Set to True to use a hardcoded drive letter instead of USB detection
+TEST_MODE = False
+TEST_DRIVE = "F:/"
+
 # DRIVE_TYPES = {
 #     0 : "Unknown",
 #     1 : "No Root Directory",
@@ -73,6 +78,14 @@ def work_loop():
     global is_on
     
     while is_on:
+        # Use test drive if TEST_MODE is enabled
+        if TEST_MODE:
+            logger.info(f"TEST MODE: Using {TEST_DRIVE}")
+            dir_path = Path(TEST_DRIVE)
+            main.main(dir_path)
+            time.sleep(60)
+            continue
+        
         usb_drives = thread()
         if not removeable_drives:
 
