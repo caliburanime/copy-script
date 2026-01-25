@@ -20,7 +20,7 @@ removeable_drives: list[str] = [] # Saves the drive letter that was found
 
 # === TEST MODE ===
 # Set to True to use a hardcoded drive letter instead of USB detection
-TEST_MODE = False
+TEST_MODE = False   
 TEST_DRIVE = "F:/"
 
 # DRIVE_TYPES = {
@@ -103,7 +103,7 @@ def work_loop():
             # if __name__== '__main__':
                 main.main(dir_path) # Sends the drive letter to the main.py
             # print(get_removeable_disk_letter())
-            time.sleep(60)
+            time.sleep(900)
 
 
 def begin():
